@@ -68,6 +68,7 @@ class Person:
         for spell in self.magic:
             print("        " + str(i) + ".", spell.name, "{cost :" + str(spell.cost)+"}" )
             i += 1
+
     def choose_item(self):
         i=1
 
@@ -75,6 +76,7 @@ class Person:
         for item in self.items:
             print("        " + str(i) + ".", item["item"].name, ":", item["item"].description, " (x" + str(item["quantity"]) + ")")
             i+=1
+
     def choose_target (self, enemies):
         i = 1
         print('\n' + bcolors.FAIL + bcolors.BOLD + "     TARGET : " + bcolors.ENDC)
@@ -90,6 +92,7 @@ class Person:
     def get_enemy_stats(self):
         hp_bar = ""
         bar_ticks = (self.hp / self.maxhp) * 100 / 2
+
         while bar_ticks > 0 :
             hp_bar += "█"
             bar_ticks -= 1
@@ -158,6 +161,7 @@ class Person:
             while decreased > 0 :
                 current_mp += " "
                 decreased -= 1
+
             current_mp += mp_string
 
         else:
@@ -174,7 +178,8 @@ class Person:
         magic_dmg = spell.generate_damage()
 
         pct = self.hp / self.maxhp * 100 
+
         if self.mp < spell.cost or spell.type == "white" and  pct > 50:  
             self.choose_enemy_spell()
         else:
-            return (spell, magic_dmg)
+            return spell, magic_dmg
